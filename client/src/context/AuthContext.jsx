@@ -16,8 +16,8 @@ export function AuthProvider({ children }) {
       .catch(() => {});
   }, []);
 
-  const login = async (email) => {
-    const res = await loginByEmail(email);
+  const login = async (email, role) => {
+    const res = await loginByEmail(email, role);
     const userData = res.data.user;
     setUser(userData);
     localStorage.setItem('adjunct_user', JSON.stringify(userData));

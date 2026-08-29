@@ -12,7 +12,6 @@ import {
   ArrowRight, 
   Filter, 
   X, 
-  Sparkles,
   ChevronRight,
   ArrowLeft,
   Building,
@@ -99,7 +98,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
   // Export to Excel / CSV Utility
   const handleExportExcel = () => {
     if (filteredApplicants.length === 0) {
-      showToast('Export Notice', 'No candidate records to export with current filters.');
+      showToast('No Data', 'No candidate records to export with current filters.');
       return;
     }
 
@@ -109,32 +108,33 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
       'Email Address',
       'Phone Number',
       'Job Requisition',
-      'Academic Degree & Institution',
+      'Academic Degree',
       'Experience (Years)',
-      'Expected Hourly Rate',
+      'Expected Rate',
       'Match Score (%)',
-      'Current Pipeline Stage',
-      'Search Committee Evaluation'
+      'Pipeline Stage',
+      'Search Committee Notes'
     ];
 
-    const rows = filteredApplicants.map(a => [
-      `"${a.id || ''}"`,
-      `"${a.name || ''}"`,
-      `"${a.email || ''}"`,
-      `"${a.phone || 'N/A'}"`,
-      `"${a.jobId || ''}"`,
-      `"${(a.degree || '').replace(/"/g, '""')}"`,
-      `"${a.experienceYears || 0}"`,
-      `"${a.expectedHourlyRate || ''}"`,
-      `"${a.matchScore || 0}%"`,
-      `"${a.status || ''}"`,
-      `"${(a.notes || 'Vetted by Search Committee').replace(/"/g, '""')}"`
+    const rows = filteredApplicants.map(cand => [
+      cand.id,
+      `"${cand.name.replace(/"/g, '""')}"`,
+      `"${cand.email.replace(/"/g, '""')}"`,
+      `"${cand.phone.replace(/"/g, '""')}"`,
+      `"${cand.jobId}"`,
+      `"${(cand.degree || '').replace(/"/g, '""')}"`,
+      cand.experienceYears || 0,
+      `"${cand.expectedHourlyRate || ''}"`,
+      cand.matchScore || 0,
+      `"${cand.status}"`,
+      `"${(cand.notes || '').replace(/"/g, '""')}"`
     ]);
 
-    const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
-    const encodedUri = encodeURI(csvContent);
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
+    link.setAttribute('href', url);
     link.setAttribute('download', `Faculty_Recruitment_ATS_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
@@ -161,10 +161,10 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
       )}
 
       {/* Header Banner */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-white p-6 rounded-2xl border border-sky-100 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <span className="p-2.5 rounded-xl bg-slate-900 text-white font-bold text-sm flex items-center justify-center">
+            <span className="p-2.5 rounded-xl bg-sky-50 text-sky-900 border border-sky-200 font-bold text-sm flex items-center justify-center">
               <UserPlus size={20} />
             </span>
             <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
@@ -180,7 +180,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
           {/* Export Excel Button */}
           <button
             onClick={handleExportExcel}
-            className="px-4 py-2.5 text-sm font-bold bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 rounded-xl shadow-2xs flex items-center gap-2 transition-all cursor-pointer"
+            className="px-4 py-2.5 text-sm font-bold bg-white hover:bg-sky-50 border border-sky-200 text-slate-900 rounded-xl shadow-2xs flex items-center gap-2 transition-all cursor-pointer"
             title="Download Candidate Records as Excel CSV"
           >
             <FileSpreadsheet size={16} className="text-emerald-600" />
@@ -199,56 +199,56 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
       {/* 4-Metric Executive Overview Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Active Openings</span>
             <span className="text-2xl font-black text-slate-900 mt-1 block">{totalOpenings} Positions</span>
             <span className="text-xs text-slate-500 mt-0.5 block">{requisitions.length} Requisitions</span>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-900 border border-sky-200 flex items-center justify-center">
             <Briefcase size={18} />
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Total Candidates</span>
             <span className="text-2xl font-black text-slate-900 mt-1 block">{applicants.length} Applicants</span>
             <span className="text-xs text-slate-500 mt-0.5 block">Vetted by Committee</span>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-900 border border-sky-200 flex items-center justify-center">
             <Users size={18} />
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">In Interview / Final</span>
             <span className="text-2xl font-black text-slate-900 mt-1 block">{inInterviewCount + selectedCount} Faculty</span>
             <span className="text-xs text-slate-500 mt-0.5 block">{inInterviewCount} Interview • {selectedCount} Selected</span>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-900 border border-sky-200 flex items-center justify-center">
             <GraduationCap size={18} />
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs flex items-center justify-between">
+        <div className="bg-white p-5 rounded-2xl border border-sky-100 shadow-2xs flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Avg Time to Hire</span>
             <span className="text-2xl font-black text-slate-900 mt-1 block">14 Days</span>
             <span className="text-xs text-emerald-700 font-semibold mt-0.5 block">On Target (Term Fall 2026)</span>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-900 border border-sky-200 flex items-center justify-center">
             <Clock size={18} />
           </div>
         </div>
       </div>
 
       {/* Active Requisitions Grid */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
+      <div className="bg-white p-6 rounded-2xl border border-sky-100 shadow-2xs space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-extrabold text-base text-slate-900">Active Job Requisitions</h3>
-          <span className="text-xs font-semibold text-slate-500">{requisitions.length} Open Positions</span>
+          <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-900 border border-sky-200">{requisitions.length} Open Positions</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -258,17 +258,17 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
               onClick={() => setSelectedReq(selectedReq === req.id ? 'all' : req.id)}
               className={`p-4 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between ${
                 selectedReq === req.id 
-                  ? 'bg-slate-50 border-slate-900 ring-1 ring-slate-900' 
-                  : 'bg-white hover:bg-slate-50/70 border-slate-200'
+                  ? 'bg-sky-50/60 border-slate-900 ring-1 ring-slate-900' 
+                  : 'bg-white hover:bg-sky-50/30 border-sky-100'
               }`}
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-mono font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                  <span className="text-xs font-mono font-bold text-white bg-slate-900 px-2 py-0.5 rounded">
                     {req.id}
                   </span>
                   <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
-                    req.urgency === 'High' ? 'bg-rose-50 text-rose-700 border border-rose-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
+                    req.urgency === 'High' ? 'bg-rose-50 text-rose-800 border border-rose-200' : 'bg-sky-50 text-sky-900 border border-sky-200'
                   }`}>
                     {req.urgency} Urgency
                   </span>
@@ -279,7 +279,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
               <div className="flex justify-between items-center text-xs text-slate-600 font-medium mt-4 pt-3 border-t border-slate-100">
                 <span className="font-bold text-slate-900">{req.hourlyRate}</span>
-                <span className="bg-slate-100 px-2 py-0.5 rounded text-slate-800 font-semibold">{req.positions} Position</span>
+                <span className="bg-sky-50 border border-sky-200 px-2 py-0.5 rounded text-sky-900 font-bold">{req.positions} Position</span>
               </div>
             </div>
           ))}
@@ -287,7 +287,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
       </div>
 
       {/* Candidate Filter & Search Toolbar */}
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white p-4 rounded-2xl border border-sky-100 shadow-2xs">
         <div className="relative w-full sm:w-80">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
           <input
@@ -295,7 +295,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
             placeholder="Search candidates, credentials, skills..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:border-slate-900 focus:bg-white transition-all"
+            className="w-full pl-10 pr-4 py-2 bg-sky-50/40 border border-sky-100 rounded-xl text-sm outline-none focus:border-slate-900 focus:bg-white transition-all"
           />
         </div>
 
@@ -304,7 +304,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
           <select
             value={selectedReq}
             onChange={(e) => setSelectedReq(e.target.value)}
-            className="bg-slate-50 text-slate-900 text-sm font-semibold border border-slate-200 rounded-xl px-3.5 py-2 outline-none focus:border-slate-900"
+            className="bg-sky-50/40 text-slate-900 text-sm font-semibold border border-sky-200 rounded-xl px-3.5 py-2 outline-none focus:border-slate-900 cursor-pointer"
           >
             <option value="all">All Requisitions</option>
             {requisitions.map(r => (
@@ -316,7 +316,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
           <select
             value={selectedStageFilter}
             onChange={(e) => setSelectedStageFilter(e.target.value)}
-            className="bg-slate-50 text-slate-900 text-sm font-semibold border border-slate-200 rounded-xl px-3.5 py-2 outline-none focus:border-slate-900"
+            className="bg-sky-50/40 text-slate-900 text-sm font-semibold border border-sky-200 rounded-xl px-3.5 py-2 outline-none focus:border-slate-900 cursor-pointer"
           >
             <option value="all">All Pipeline Stages</option>
             {STAGES.map(s => <option key={s} value={s}>{s}</option>)}
@@ -324,25 +324,25 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
           <button
             onClick={handleExportExcel}
-            className="p-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border border-slate-200 flex items-center gap-1.5 text-xs font-bold transition-all cursor-pointer"
+            className="p-2 bg-white hover:bg-sky-50 text-slate-900 rounded-xl border border-sky-200 flex items-center gap-1.5 text-xs font-bold transition-all cursor-pointer shadow-2xs"
             title="Export Excel Sheet"
           >
             <Download size={14} />
             CSV/Excel
           </button>
 
-          <span className="font-bold text-slate-900 bg-slate-100 px-3 py-2 rounded-xl border border-slate-200 text-xs">
+          <span className="font-bold text-sky-900 bg-sky-50 px-3 py-2 rounded-xl border border-sky-200 text-xs">
             {filteredApplicants.length} Candidates
           </span>
         </div>
       </div>
 
-      {/* Candidate Pipeline Table (Full Width & No Screen Overflow) */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-2xs overflow-hidden">
+      {/* Candidate Pipeline Table */}
+      <div className="bg-white rounded-2xl border border-sky-100 shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <tr className="bg-sky-50/60 border-b border-sky-100 text-xs font-bold text-slate-600 uppercase tracking-wider">
                 <th className="py-4 px-5">Candidate Name</th>
                 <th className="py-4 px-5">Academic Credentials</th>
                 <th className="py-4 px-5">Requisition & Rate</th>
@@ -355,7 +355,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
               {filteredApplicants.map((cand) => (
                 <tr 
                   key={cand.id}
-                  className="hover:bg-slate-50/60 transition-colors"
+                  className="hover:bg-sky-50/30 transition-colors"
                 >
                   {/* Candidate Profile */}
                   <td className="py-4 px-5">
@@ -383,7 +383,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
                   {/* Requisition ID & Rate */}
                   <td className="py-4 px-5">
-                    <span className="font-mono text-xs font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                    <span className="font-mono text-xs font-bold text-sky-900 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">
                       {cand.jobId}
                     </span>
                     <p className="text-xs text-slate-900 font-extrabold mt-1">{cand.expectedHourlyRate}/hr</p>
@@ -391,8 +391,8 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
                   {/* Match Score */}
                   <td className="py-4 px-5">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-900 border border-sky-200">
+                      <span className="w-2 h-2 rounded-full bg-sky-600" />
                       {cand.matchScore}% Match
                     </span>
                   </td>
@@ -402,7 +402,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
                     <select
                       value={cand.status}
                       onChange={(e) => handleStageChange(cand, e.target.value)}
-                      className="bg-slate-50 text-slate-900 text-xs font-bold border border-slate-200 rounded-xl px-3 py-1.5 outline-none focus:border-slate-900 cursor-pointer shadow-2xs"
+                      className="bg-sky-50/50 text-slate-900 text-xs font-bold border border-sky-200 rounded-xl px-3 py-1.5 outline-none focus:border-slate-900 cursor-pointer shadow-2xs"
                     >
                       {STAGES.map(s => (
                         <option key={s} value={s}>{s}</option>
@@ -459,19 +459,19 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
             <div className="mt-5 space-y-4 text-sm">
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="p-3.5 rounded-xl bg-sky-50/50 border border-sky-100">
                   <span className="text-slate-400 block text-xs font-semibold uppercase">Requisition</span>
                   <span className="font-bold text-slate-900 mt-0.5 block">{candidateModal.jobId}</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="p-3.5 rounded-xl bg-sky-50/50 border border-sky-100">
                   <span className="text-slate-400 block text-xs font-semibold uppercase">Match Score</span>
-                  <span className="font-bold text-emerald-700 mt-0.5 block">{candidateModal.matchScore}% Match</span>
+                  <span className="font-bold text-sky-900 mt-0.5 block">{candidateModal.matchScore}% Match</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="p-3.5 rounded-xl bg-sky-50/50 border border-sky-100">
                   <span className="text-slate-400 block text-xs font-semibold uppercase">Experience</span>
                   <span className="font-bold text-slate-900 mt-0.5 block">{candidateModal.experienceYears} Years</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="p-3.5 rounded-xl bg-sky-50/50 border border-sky-100">
                   <span className="text-slate-400 block text-xs font-semibold uppercase">Expected Rate</span>
                   <span className="font-bold text-slate-900 mt-0.5 block">{candidateModal.expectedHourlyRate} / hr</span>
                 </div>
@@ -479,15 +479,15 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
 
               <div>
                 <span className="font-bold text-slate-700 uppercase text-xs block mb-1.5">Contact Information</span>
-                <div className="flex items-center gap-4 text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-medium">
-                  <span className="flex items-center gap-1.5"><Mail size={14} className="text-slate-500" /> {candidateModal.email}</span>
-                  <span className="flex items-center gap-1.5"><Phone size={14} className="text-slate-500" /> {candidateModal.phone}</span>
+                <div className="flex items-center gap-4 text-slate-800 bg-sky-50/50 p-3 rounded-xl border border-sky-100 text-xs font-medium">
+                  <span className="flex items-center gap-1.5"><Mail size={14} className="text-sky-700" /> {candidateModal.email}</span>
+                  <span className="flex items-center gap-1.5"><Phone size={14} className="text-sky-700" /> {candidateModal.phone}</span>
                 </div>
               </div>
 
               <div>
                 <span className="font-bold text-slate-700 uppercase text-xs block mb-1.5">Search Committee Evaluation</span>
-                <p className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-xs leading-relaxed">
+                <p className="p-3.5 rounded-xl bg-sky-50/40 border border-sky-100 text-slate-700 text-xs leading-relaxed">
                   {candidateModal.notes || 'Candidate profile vetted by department search committee. Recommended for immediate secondary interview round.'}
                 </p>
               </div>
@@ -505,7 +505,7 @@ export default function RecruitmentPipelineTab({ recruitmentData, onRefresh }) {
                       className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         candidateModal.status === s 
                           ? 'bg-slate-900 text-white shadow-2xs' 
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          : 'bg-sky-50 text-sky-900 border border-sky-200 hover:bg-sky-100'
                       }`}
                     >
                       {s}

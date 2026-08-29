@@ -131,7 +131,7 @@ export default function HODDashboard({ initialTab }) {
             </span>
           </div>
           <p className="text-xs text-slate-500 mt-1">
-            Welcome back, <strong className="text-slate-800">{user?.name || 'Dr. Alan Smith'}</strong>. Real-time institutional health, faculty distribution & student success.
+            Welcome back, <strong className="text-slate-800">{user?.name || 'Dr. Rajesh Sharma'}</strong>. Real-time institutional health, faculty distribution & student success.
           </p>
         </div>
 

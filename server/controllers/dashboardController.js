@@ -7,12 +7,12 @@ let hodDataStore = {
     name: 'Department of Computer Science & Engineering',
     code: 'CSE',
     term: 'Fall 2026',
-    hodName: 'Dr. Alan Smith',
+    hodName: 'Dr. Rajesh Sharma',
     budget: {
-      allocated: 120000,
-      spent: 84500,
-      currency: 'USD',
-      adjunctHourlyRateAvg: 75,
+      allocated: 1200000,
+      spent: 845000,
+      currency: 'INR',
+      adjunctHourlyRateAvg: 1250,
       hoursLoggedThisMonth: 1126,
       hoursAllocatedCap: 1600
     }
@@ -22,11 +22,11 @@ let hodDataStore = {
   facultyWorkload: [
     {
       id: 'f1',
-      name: 'Prof. Jane Doe',
-      email: 'jane.adjunct@univ.edu',
+      name: 'Prof. Priya Sharma',
+      email: 'priya.sharma@univ.edu.in',
       type: 'Adjunct',
       department: 'Computer Science',
-      avatar: 'JD',
+      avatar: 'PS',
       maxWeeklyHours: 18,
       currentWeeklyHours: 22,
       workloadScore: 92,
@@ -41,11 +41,11 @@ let hodDataStore = {
     },
     {
       id: 'f2',
-      name: 'Dr. Alex Rivera',
-      email: 'alex.rivera@univ.edu',
+      name: 'Dr. Alok Verma',
+      email: 'alok.verma@univ.edu.in',
       type: 'Full-Time',
       department: 'Computer Science',
-      avatar: 'AR',
+      avatar: 'AV',
       maxWeeklyHours: 20,
       currentWeeklyHours: 10,
       workloadScore: 50,
@@ -58,11 +58,11 @@ let hodDataStore = {
     },
     {
       id: 'f3',
-      name: 'Dr. Sarah Jenkins',
-      email: 'sarah.j@univ.edu',
+      name: 'Dr. Ananya Gupta',
+      email: 'ananya.gupta@univ.edu.in',
       type: 'Full-Time',
       department: 'AI & Data Science',
-      avatar: 'SJ',
+      avatar: 'AG',
       maxWeeklyHours: 20,
       currentWeeklyHours: 16,
       workloadScore: 78,
@@ -76,11 +76,11 @@ let hodDataStore = {
     },
     {
       id: 'f4',
-      name: 'Prof. Michael Chang',
-      email: 'm.chang@univ.edu',
+      name: 'Prof. Amit Patel',
+      email: 'amit.patel@univ.edu.in',
       type: 'Adjunct',
       department: 'Computer Science',
-      avatar: 'MC',
+      avatar: 'AP',
       maxWeeklyHours: 18,
       currentWeeklyHours: 20,
       workloadScore: 89,
@@ -95,11 +95,11 @@ let hodDataStore = {
     },
     {
       id: 'f5',
-      name: 'Dr. Priya Sharma',
-      email: 'priya.s@univ.edu',
+      name: 'Dr. Sunita Reddy',
+      email: 'sunita.reddy@univ.edu.in',
       type: 'Adjunct',
       department: 'Cybersecurity',
-      avatar: 'PS',
+      avatar: 'SR',
       maxWeeklyHours: 16,
       currentWeeklyHours: 8,
       workloadScore: 50,
@@ -112,11 +112,11 @@ let hodDataStore = {
     },
     {
       id: 'f6',
-      name: 'Prof. Robert Taylor',
-      email: 'r.taylor@univ.edu',
+      name: 'Prof. Vikram Rao',
+      email: 'vikram.rao@univ.edu.in',
       type: 'Full-Time',
       department: 'Computer Science',
-      avatar: 'RT',
+      avatar: 'VR',
       maxWeeklyHours: 20,
       currentWeeklyHours: 16,
       workloadScore: 80,
@@ -134,56 +134,56 @@ let hodDataStore = {
   advisors: [
     {
       id: 'adv1',
-      name: 'Mark Evans',
-      email: 'mark.advisor@univ.edu',
+      name: 'Dr. Ramesh Iyer',
+      email: 'ramesh.iyer@univ.edu.in',
       department: 'Computer Science',
-      avatar: 'ME',
+      avatar: 'RI',
       maxCapacityPoints: 120,
       caseloadScore: 138,
       status: 'Overloaded',
       totalStudentsCount: 65,
       assignedStudents: [
-        { id: 's1', name: 'Alice Wong', email: 'alice.wong@univ.edu', semester: 4, cgpa: 5.4, attendance: 58, risk: 'high', riskPoints: 3, major: 'Computer Science' },
-        { id: 's2', name: 'Liam Wilson', email: 'liam.w@univ.edu', semester: 2, cgpa: 5.8, attendance: 62, risk: 'high', riskPoints: 3, major: 'Computer Science' },
-        { id: 's3', name: 'Alex Johnson', email: 'alex.j@univ.edu', semester: 3, cgpa: 6.8, attendance: 75, risk: 'medium', riskPoints: 2, major: 'Computer Science' },
-        { id: 's4', name: 'Daniel Garcia', email: 'd.garcia@univ.edu', semester: 4, cgpa: 7.1, attendance: 78, risk: 'medium', riskPoints: 2, major: 'Computer Science' },
-        { id: 's5', name: 'Maya Patel', email: 'maya.p@univ.edu', semester: 3, cgpa: 8.9, attendance: 94, risk: 'low', riskPoints: 1, major: 'Computer Science' },
-        { id: 's6', name: 'Ethan Brooks', email: 'e.brooks@univ.edu', semester: 2, cgpa: 8.6, attendance: 91, risk: 'low', riskPoints: 1, major: 'Computer Science' },
-        { id: 's7', name: 'Hannah Lee', email: 'hannah.l@univ.edu', semester: 5, cgpa: 9.1, attendance: 96, risk: 'low', riskPoints: 1, major: 'Computer Science' },
-        { id: 's8', name: 'Tyler Reed', email: 'tyler.r@univ.edu', semester: 3, cgpa: 8.4, attendance: 89, risk: 'low', riskPoints: 1, major: 'Computer Science' },
-        { id: 's9', name: 'Chloe Adams', email: 'chloe.a@univ.edu', semester: 4, cgpa: 8.8, attendance: 92, risk: 'low', riskPoints: 1, major: 'Computer Science' }
+        { id: 's1', name: 'Aarav Sharma', email: 'aarav.sharma@univ.edu.in', semester: 4, cgpa: 5.4, attendance: 58, risk: 'high', riskPoints: 3, major: 'Computer Science' },
+        { id: 's2', name: 'Pooja Sundaram', email: 'pooja.s@univ.edu.in', semester: 2, cgpa: 5.8, attendance: 62, risk: 'high', riskPoints: 3, major: 'Computer Science' },
+        { id: 's3', name: 'Rohan Gupta', email: 'rohan.g@univ.edu.in', semester: 3, cgpa: 6.8, attendance: 75, risk: 'medium', riskPoints: 2, major: 'Computer Science' },
+        { id: 's4', name: 'Neha Verma', email: 'neha.v@univ.edu.in', semester: 4, cgpa: 7.1, attendance: 78, risk: 'medium', riskPoints: 2, major: 'Computer Science' },
+        { id: 's5', name: 'Maya Patel', email: 'maya.p@univ.edu.in', semester: 3, cgpa: 8.9, attendance: 94, risk: 'low', riskPoints: 1, major: 'Computer Science' },
+        { id: 's6', name: 'Kunal Shah', email: 'kunal.s@univ.edu.in', semester: 2, cgpa: 8.6, attendance: 91, risk: 'low', riskPoints: 1, major: 'Computer Science' },
+        { id: 's7', name: 'Aditi Nair', email: 'aditi.n@univ.edu.in', semester: 5, cgpa: 9.1, attendance: 96, risk: 'low', riskPoints: 1, major: 'Computer Science' },
+        { id: 's8', name: 'Siddharth Jain', email: 'siddharth.j@univ.edu.in', semester: 3, cgpa: 8.4, attendance: 89, risk: 'low', riskPoints: 1, major: 'Computer Science' },
+        { id: 's9', name: 'Ananya Roy', email: 'ananya.r@univ.edu.in', semester: 4, cgpa: 8.8, attendance: 92, risk: 'low', riskPoints: 1, major: 'Computer Science' }
       ]
     },
     {
       id: 'adv2',
-      name: 'Elena Rostova',
-      email: 'elena.r@univ.edu',
+      name: 'Prof. Sneha Deshmukh',
+      email: 'sneha.deshmukh@univ.edu.in',
       department: 'Computer Science',
-      avatar: 'ER',
+      avatar: 'SD',
       maxCapacityPoints: 120,
       caseloadScore: 72,
       status: 'Available',
       totalStudentsCount: 38,
       assignedStudents: [
-        { id: 's10', name: 'Kevin Zhang', email: 'kevin.z@univ.edu', semester: 3, cgpa: 7.9, attendance: 85, risk: 'low', riskPoints: 1, major: 'Computer Science' },
-        { id: 's11', name: 'Rachel Green', email: 'rachel.g@univ.edu', semester: 2, cgpa: 7.2, attendance: 76, risk: 'medium', riskPoints: 2, major: 'Computer Science' },
-        { id: 's12', name: 'Nina Simone', email: 'nina.s@univ.edu', semester: 1, cgpa: 8.5, attendance: 90, risk: 'low', riskPoints: 1, major: 'Computer Science' }
+        { id: 's10', name: 'Vikram Singh', email: 'vikram.s@univ.edu.in', semester: 3, cgpa: 7.9, attendance: 85, risk: 'low', riskPoints: 1, major: 'Computer Science' },
+        { id: 's11', name: 'Tanvi Joshi', email: 'tanvi.j@univ.edu.in', semester: 2, cgpa: 7.2, attendance: 76, risk: 'medium', riskPoints: 2, major: 'Computer Science' },
+        { id: 's12', name: 'Meera Sen', email: 'meera.s@univ.edu.in', semester: 1, cgpa: 8.5, attendance: 90, risk: 'low', riskPoints: 1, major: 'Computer Science' }
       ]
     },
     {
       id: 'adv3',
-      name: 'David Kalu',
-      email: 'david.kalu@univ.edu',
+      name: 'Dr. Sanjay Kulkarni',
+      email: 'sanjay.kulkarni@univ.edu.in',
       department: 'AI & Data Science',
-      avatar: 'DK',
+      avatar: 'SK',
       maxCapacityPoints: 120,
       caseloadScore: 94,
       status: 'Optimal',
       totalStudentsCount: 48,
       assignedStudents: [
-        { id: 's13', name: 'Marcus Bell', email: 'm.bell@univ.edu', semester: 4, cgpa: 6.4, attendance: 70, risk: 'medium', riskPoints: 2, major: 'AI & Data Science' },
-        { id: 's14', name: 'Zoe Campbell', email: 'z.campbell@univ.edu', semester: 1, cgpa: 8.9, attendance: 95, risk: 'low', riskPoints: 1, major: 'AI & Data Science' },
-        { id: 's15', name: 'Tariq Vance', email: 't.vance@univ.edu', semester: 3, cgpa: 5.7, attendance: 63, risk: 'high', riskPoints: 3, major: 'AI & Data Science' }
+        { id: 's13', name: 'Harsh Vardhan', email: 'harsh.v@univ.edu.in', semester: 4, cgpa: 6.4, attendance: 70, risk: 'medium', riskPoints: 2, major: 'AI & Data Science' },
+        { id: 's14', name: 'Deepa Krishnan', email: 'deepa.k@univ.edu.in', semester: 1, cgpa: 8.9, attendance: 95, risk: 'low', riskPoints: 1, major: 'AI & Data Science' },
+        { id: 's15', name: 'Abhishek Rao', email: 'abhishek.r@univ.edu.in', semester: 3, cgpa: 5.7, attendance: 63, risk: 'high', riskPoints: 3, major: 'AI & Data Science' }
       ]
     }
   ],
@@ -197,7 +197,7 @@ let hodDataStore = {
       positions: 2,
       applicantsCount: 5,
       status: 'Active',
-      hourlyRate: '$75 - $95 / hr',
+      hourlyRate: '₹1,200 - ₹1,800 / hr',
       urgency: 'High',
       postedDate: '2026-08-10'
     },
@@ -208,7 +208,7 @@ let hodDataStore = {
       positions: 1,
       applicantsCount: 4,
       status: 'Active',
-      hourlyRate: '$80 - $105 / hr',
+      hourlyRate: '₹1,500 - ₹2,200 / hr',
       urgency: 'Medium',
       postedDate: '2026-08-14'
     },
@@ -219,7 +219,7 @@ let hodDataStore = {
       positions: 1,
       applicantsCount: 3,
       status: 'Active',
-      hourlyRate: '$70 - $90 / hr',
+      hourlyRate: '₹1,000 - ₹1,600 / hr',
       urgency: 'Normal',
       postedDate: '2026-08-18'
     }
@@ -229,85 +229,85 @@ let hodDataStore = {
     {
       id: 'APP-201',
       jobId: 'REQ-01',
-      name: 'Dr. Emily Watson',
-      email: 'emily.watson@example.com',
-      phone: '+1 (555) 234-5678',
+      name: 'Dr. Meera Nambiar',
+      email: 'meera.nambiar@example.com',
+      phone: '+91 98765 43210',
       experienceYears: 9,
       status: 'Applied',
       matchScore: 92,
       appliedDate: '2026-08-28',
-      expectedHourlyRate: '$85',
-      degree: 'Ph.D. in Distributed Systems (MIT)',
-      notes: 'Strong industry background at AWS. Specialized in Kubernetes and Microservices.'
+      expectedHourlyRate: '₹1,600',
+      degree: 'Ph.D. in Distributed Systems (IIT Bombay)',
+      notes: 'Strong industry background at AWS Cloud. Specialized in Kubernetes and Microservices.'
     },
     {
       id: 'APP-202',
       jobId: 'REQ-01',
-      name: 'Brian Miller',
-      email: 'brian.miller@example.com',
-      phone: '+1 (555) 345-6789',
+      name: 'Ankit Verma',
+      email: 'ankit.verma@example.com',
+      phone: '+91 98123 45678',
       experienceYears: 7,
       status: 'Applied',
       matchScore: 84,
       appliedDate: '2026-08-27',
-      expectedHourlyRate: '$78',
-      degree: 'M.S. in Computer Engineering (Stanford)',
-      notes: 'Solutions Architect at Datadog with prior teaching assistant experience.'
+      expectedHourlyRate: '₹1,400',
+      degree: 'M.Tech in Computer Engineering (IIT Delhi)',
+      notes: 'Solutions Architect at Datadog with prior university teaching assistant experience.'
     },
     {
       id: 'APP-203',
       jobId: 'REQ-02',
       name: 'Dr. Rajesh Verma',
-      email: 'rajesh.v@example.com',
-      phone: '+1 (555) 456-7890',
+      email: 'rajesh.verma@example.com',
+      phone: '+91 97654 32109',
       experienceYears: 12,
       status: 'Screening',
       matchScore: 95,
       appliedDate: '2026-08-24',
-      expectedHourlyRate: '$95',
-      degree: 'Ph.D. in Machine Learning (CMU)',
+      expectedHourlyRate: '₹1,800',
+      degree: 'Ph.D. in Machine Learning (IISc Bangalore)',
       notes: 'Passed initial background screening. Demo lecture scheduled for Tuesday.'
     },
     {
       id: 'APP-204',
       jobId: 'REQ-02',
-      name: 'Dr. Carlos Mendez',
-      email: 'carlos.m@example.com',
-      phone: '+1 (555) 567-8901',
+      name: 'Dr. Arjun Mehta',
+      email: 'arjun.mehta@example.com',
+      phone: '+91 96543 21098',
       experienceYears: 6,
       status: 'Interview',
       matchScore: 89,
       appliedDate: '2026-08-20',
-      expectedHourlyRate: '$85',
-      degree: 'Ph.D. in Computational AI (Oxford)',
+      expectedHourlyRate: '₹1,650',
+      degree: 'Ph.D. in Computational AI (IIT Madras)',
       notes: 'Interview committee rated pedagogical clarity 4.8/5.0. Recommended for selection.'
     },
     {
       id: 'APP-205',
       jobId: 'REQ-03',
-      name: 'Dr. Sophia Martinez',
-      email: 'sophia.m@example.com',
-      phone: '+1 (555) 678-9012',
+      name: 'Dr. Deepa Nair',
+      email: 'deepa.nair@example.com',
+      phone: '+91 95432 10987',
       experienceYears: 11,
       status: 'Selected',
       matchScore: 97,
       appliedDate: '2026-08-15',
-      expectedHourlyRate: '$90',
-      degree: 'Ph.D. in Cyber Defense (Georgia Tech)',
+      expectedHourlyRate: '₹1,750',
+      degree: 'Ph.D. in Cyber Defense (IIT Kanpur)',
       notes: 'Offer letter signed. Moved to onboarding workflow.'
     },
     {
       id: 'APP-206',
       jobId: 'REQ-01',
-      name: 'Prof. Eve Brown',
-      email: 'eve.b@example.com',
-      phone: '+1 (555) 789-0123',
+      name: 'Prof. Kavita Joshi',
+      email: 'kavita.joshi@example.com',
+      phone: '+91 94321 09876',
       experienceYears: 10,
       status: 'Onboarding',
       matchScore: 93,
       appliedDate: '2026-08-01',
-      expectedHourlyRate: '$80',
-      degree: 'M.S. in Computer Science (UC Berkeley)',
+      expectedHourlyRate: '₹1,500',
+      degree: 'M.Tech in Computer Science (BITS Pilani)',
       notes: 'Onboarding in final stages. LMS and mentor verification underway.'
     }
   ],
@@ -316,42 +316,42 @@ let hodDataStore = {
   onboardingList: [
     {
       id: 'ONB-01',
-      candidateName: 'Dr. Sophia Martinez',
-      email: 'sophia.m@univ.edu',
+      candidateName: 'Dr. Deepa Nair',
+      email: 'deepa.nair@univ.edu.in',
       role: 'Adjunct Professor - Cloud Security',
       department: 'Cybersecurity',
-      avatar: 'SM',
+      avatar: 'DN',
       startDate: '2026-09-15',
       overallProgress: 60,
       status: 'In Progress',
-      assignedMentor: 'Dr. Priya Sharma',
+      assignedMentor: 'Dr. Sunita Reddy',
       tasks: [
-        { id: 't1', title: 'Identity & SSN/Tax Verification (W-9)', phase: 'Documents', completed: true, requiredBy: 'HR Compliance' },
+        { id: 't1', title: 'Identity & PAN/Aadhaar/Tax Verification', phase: 'Documents', completed: true, requiredBy: 'HR Compliance' },
         { id: 't2', title: 'Ph.D. Transcripts & Credential Audit', phase: 'Documents', completed: true, requiredBy: 'Academic Council' },
-        { id: 't3', title: 'University Email Provisioning', phase: 'IT & LMS', completed: true, requiredBy: 'IT Services' },
-        { id: 't4', title: 'Canvas LMS Instructor Sandbox Setup', phase: 'IT & LMS', completed: true, requiredBy: 'E-Learning Support' },
-        { id: 't5', title: 'Course Syllabus & Grading Rubric Sign-off', phase: 'Curriculum', completed: false, requiredBy: 'HOD Dr. Alan Smith' },
+        { id: 't3', title: 'University Institutional Email Provisioning', phase: 'IT & LMS', completed: true, requiredBy: 'IT Services' },
+        { id: 't4', title: 'LMS Instructor Sandbox Setup', phase: 'IT & LMS', completed: true, requiredBy: 'E-Learning Support' },
+        { id: 't5', title: 'Course Syllabus & Grading Rubric Sign-off', phase: 'Curriculum', completed: false, requiredBy: 'HOD Dr. Rajesh Sharma' },
         { id: 't6', title: 'Department Faculty Orientation & SLA Training', phase: 'Orientation', completed: false, requiredBy: 'Department Chair' },
         { id: 't7', title: 'Classroom Tech Dry-run & Mentor Sign-off', phase: 'Readiness', completed: false, requiredBy: 'Assigned Mentor' }
       ]
     },
     {
       id: 'ONB-02',
-      candidateName: 'Prof. Eve Brown',
-      email: 'eve.b@univ.edu',
+      candidateName: 'Prof. Kavita Joshi',
+      email: 'kavita.joshi@univ.edu.in',
       role: 'Adjunct Lecturer - Python Programming',
       department: 'Computer Science',
-      avatar: 'EB',
+      avatar: 'KJ',
       startDate: '2026-09-01',
       overallProgress: 86,
       status: 'In Progress',
-      assignedMentor: 'Prof. Jane Doe',
+      assignedMentor: 'Prof. Priya Sharma',
       tasks: [
-        { id: 't11', title: 'Identity & SSN/Tax Verification (W-9)', phase: 'Documents', completed: true, requiredBy: 'HR Compliance' },
-        { id: 't12', title: 'M.S. Transcripts & Credential Audit', phase: 'Documents', completed: true, requiredBy: 'Academic Council' },
-        { id: 't13', title: 'University Email Provisioning', phase: 'IT & LMS', completed: true, requiredBy: 'IT Services' },
-        { id: 't14', title: 'Canvas LMS Instructor Sandbox Setup', phase: 'IT & LMS', completed: true, requiredBy: 'E-Learning Support' },
-        { id: 't15', title: 'Course Syllabus & Grading Rubric Sign-off', phase: 'Curriculum', completed: true, requiredBy: 'HOD Dr. Alan Smith' },
+        { id: 't11', title: 'Identity & PAN/Aadhaar/Tax Verification', phase: 'Documents', completed: true, requiredBy: 'HR Compliance' },
+        { id: 't12', title: 'M.Tech Transcripts & Credential Audit', phase: 'Documents', completed: true, requiredBy: 'Academic Council' },
+        { id: 't13', title: 'University Institutional Email Provisioning', phase: 'IT & LMS', completed: true, requiredBy: 'IT Services' },
+        { id: 't14', title: 'LMS Instructor Sandbox Setup', phase: 'IT & LMS', completed: true, requiredBy: 'E-Learning Support' },
+        { id: 't15', title: 'Course Syllabus & Grading Rubric Sign-off', phase: 'Curriculum', completed: true, requiredBy: 'HOD Dr. Rajesh Sharma' },
         { id: 't16', title: 'Department Faculty Orientation & SLA Training', phase: 'Orientation', completed: true, requiredBy: 'Department Chair' },
         { id: 't17', title: 'Classroom Tech Dry-run & Mentor Sign-off', phase: 'Readiness', completed: false, requiredBy: 'Assigned Mentor' }
       ]
@@ -372,7 +372,8 @@ let hodDataStore = {
         id: 'co1',
         code: 'CS301',
         title: 'Advanced Python Programming',
-        instructor: 'Prof. Jane Doe',
+        facultyName: 'Prof. Priya Sharma',
+        section: 'A',
         enrolled: 125,
         passRate: 91.2,
         avgGPA: 3.42,
@@ -385,7 +386,8 @@ let hodDataStore = {
         id: 'co2',
         code: 'CS402',
         title: 'Machine Learning Basics',
-        instructor: 'Prof. Jane Doe',
+        facultyName: 'Prof. Priya Sharma',
+        section: 'A',
         enrolled: 85,
         passRate: 87.0,
         avgGPA: 3.25,
@@ -398,7 +400,8 @@ let hodDataStore = {
         id: 'co3',
         code: 'CS101',
         title: 'Introduction to CS',
-        instructor: 'Prof. Michael Chang',
+        facultyName: 'Prof. Amit Patel',
+        section: 'A',
         enrolled: 138,
         passRate: 78.2,
         avgGPA: 2.85,
@@ -412,7 +415,8 @@ let hodDataStore = {
         id: 'co4',
         code: 'DS301',
         title: 'Big Data Processing',
-        instructor: 'Dr. Sarah Jenkins',
+        facultyName: 'Dr. Ananya Gupta',
+        section: 'A',
         enrolled: 52,
         passRate: 94.2,
         avgGPA: 3.65,
@@ -425,7 +429,8 @@ let hodDataStore = {
         id: 'co5',
         code: 'SEC301',
         title: 'Network Security Fundamentals',
-        instructor: 'Dr. Priya Sharma',
+        facultyName: 'Dr. Sunita Reddy',
+        section: 'A',
         enrolled: 40,
         passRate: 90.0,
         avgGPA: 3.30,
@@ -442,22 +447,22 @@ let hodDataStore = {
     {
       id: 'alt-1',
       title: 'Faculty Overload Detected',
-      message: 'Prof. Jane Doe is teaching 22 weekly hours across 3 sections (> 18h maximum guideline).',
+      message: 'Prof. Priya Sharma is teaching 22 weekly hours across 3 sections (> 18h maximum guideline).',
       severity: 'high',
       timestamp: '15 mins ago',
       category: 'workload',
       actionable: true,
-      suggestedAction: 'Reassign CS301 Sec B to Dr. Alex Rivera'
+      suggestedAction: 'Reassign CS301 Sec B to Dr. Alok Verma'
     },
     {
       id: 'alt-2',
       title: 'Advisor Capacity Exceeded',
-      message: 'Mark Evans has a risk-weighted score of 138 pts (> 120 max capacity).',
+      message: 'Dr. Ramesh Iyer has a risk-weighted score of 138 pts (> 120 max capacity).',
       severity: 'high',
       timestamp: '45 mins ago',
       category: 'advisory',
       actionable: true,
-      suggestedAction: 'Redistribute 5 low-risk students to Elena Rostova'
+      suggestedAction: 'Redistribute 5 low-risk students to Prof. Sneha Deshmukh'
     },
     {
       id: 'alt-3',
@@ -472,7 +477,7 @@ let hodDataStore = {
     {
       id: 'alt-4',
       title: 'Onboarding Milestone Reached',
-      message: 'Prof. Eve Brown reached 86% onboarding completion. Pending final mentor sign-off.',
+      message: 'Prof. Kavita Joshi reached 86% onboarding completion. Pending final mentor sign-off.',
       severity: 'low',
       timestamp: '5 hours ago',
       category: 'onboarding',
@@ -741,13 +746,13 @@ const updateApplicantStatus = async (req, res) => {
           startDate: '2026-09-20',
           overallProgress: 15,
           status: 'In Progress',
-          assignedMentor: 'Dr. Alex Rivera',
+          assignedMentor: 'Dr. Alok Verma',
           tasks: [
-            { id: `t_${Date.now()}_1`, title: 'Identity & SSN/Tax Verification (W-9)', phase: 'Documents', completed: false, requiredBy: 'HR Compliance' },
+            { id: `t_${Date.now()}_1`, title: 'Identity & PAN/Aadhaar/Tax Verification', phase: 'Documents', completed: false, requiredBy: 'HR Compliance' },
             { id: `t_${Date.now()}_2`, title: 'Transcripts & Credential Audit', phase: 'Documents', completed: false, requiredBy: 'Academic Council' },
-            { id: `t_${Date.now()}_3`, title: 'University Email Provisioning', phase: 'IT & LMS', completed: false, requiredBy: 'IT Services' },
-            { id: `t_${Date.now()}_4`, title: 'Canvas LMS Sandbox Setup', phase: 'IT & LMS', completed: false, requiredBy: 'E-Learning Support' },
-            { id: `t_${Date.now()}_5`, title: 'Course Syllabus & Grading Rubric Sign-off', phase: 'Curriculum', completed: false, requiredBy: 'HOD Dr. Alan Smith' },
+            { id: `t_${Date.now()}_3`, title: 'University Institutional Email Provisioning', phase: 'IT & LMS', completed: false, requiredBy: 'IT Services' },
+            { id: `t_${Date.now()}_4`, title: 'LMS Sandbox Setup', phase: 'IT & LMS', completed: false, requiredBy: 'E-Learning Support' },
+            { id: `t_${Date.now()}_5`, title: 'Course Syllabus & Grading Rubric Sign-off', phase: 'Curriculum', completed: false, requiredBy: 'HOD Dr. Rajesh Sharma' },
             { id: `t_${Date.now()}_6`, title: 'Department Faculty Orientation & SLA Training', phase: 'Orientation', completed: false, requiredBy: 'Department Chair' },
             { id: `t_${Date.now()}_7`, title: 'Classroom Tech Dry-run & Mentor Sign-off', phase: 'Readiness', completed: false, requiredBy: 'Assigned Mentor' }
           ]
@@ -774,7 +779,7 @@ const createJobRequisition = async (req, res) => {
       positions: parseInt(positions, 10) || 1,
       applicantsCount: 0,
       status: 'Active',
-      hourlyRate: hourlyRate || '$75 - $95 / hr',
+      hourlyRate: hourlyRate || '₹1,200 - ₹1,800 / hr',
       urgency: urgency || 'Medium',
       postedDate: new Date().toISOString().split('T')[0]
     };
@@ -806,12 +811,15 @@ const updateOnboardingTask = async (req, res) => {
     }
 
     const task = candidate.tasks.find(t => t.id === taskId);
-    if (task) {
-      task.completed = completed;
+    if (!task) {
+      return res.status(404).json({ error: 'Task not found' });
     }
 
-    const completedCount = candidate.tasks.filter(t => t.completed).length;
-    candidate.overallProgress = Math.round((completedCount / candidate.tasks.length) * 100);
+    task.completed = completed;
+    const totalTasks = candidate.tasks.length;
+    const completedTasks = candidate.tasks.filter(t => t.completed).length;
+    candidate.overallProgress = Math.round((completedTasks / totalTasks) * 100);
+
     if (candidate.overallProgress === 100) {
       candidate.status = 'Ready for Activation';
     } else {
@@ -839,26 +847,28 @@ const activateFacultyCandidate = async (req, res) => {
     candidate.status = 'Active Faculty';
     candidate.overallProgress = 100;
 
-    const newFacultyId = `f_${Date.now()}`;
-    hodDataStore.facultyWorkload.push({
-      id: newFacultyId,
-      name: candidate.candidateName,
-      email: candidate.email,
-      type: 'Adjunct',
-      department: candidate.department,
-      avatar: candidate.avatar,
-      maxWeeklyHours: 16,
-      currentWeeklyHours: 0,
-      workloadScore: 0,
-      status: 'Available',
-      rating: 5.0,
-      doubtSlaPercent: 100.0,
-      assignedCourses: []
-    });
+    const existingFaculty = hodDataStore.facultyWorkload.find(f => f.email === candidate.email);
+    if (!existingFaculty) {
+      hodDataStore.facultyWorkload.push({
+        id: `f_${Date.now().toString().slice(-4)}`,
+        name: candidate.candidateName,
+        email: candidate.email,
+        type: 'Adjunct',
+        department: candidate.department,
+        avatar: candidate.avatar,
+        maxWeeklyHours: 18,
+        currentWeeklyHours: 0,
+        workloadScore: 25,
+        status: 'Available',
+        rating: 5.0,
+        doubtSlaPercent: 100.0,
+        assignedCourses: []
+      });
+    }
 
     return res.json({
       success: true,
-      message: `${candidate.candidateName} is now activated as an active Faculty member.`,
+      message: `${candidate.candidateName} activated and added to faculty roster.`,
       candidate
     });
   } catch (err) {
@@ -866,7 +876,7 @@ const activateFacultyCandidate = async (req, res) => {
   }
 };
 
-// 6. Performance + Student Outcomes
+// 6. Student & Performance Outcomes
 const getStudentOutcomes = async (req, res) => {
   try {
     return res.json(hodDataStore.outcomes);
@@ -875,40 +885,30 @@ const getStudentOutcomes = async (req, res) => {
   }
 };
 
-// Existing compatibility endpoints
+// Compatibility Endpoints
 const getHODStats = async (req, res) => {
-  return res.json({
-    facultyCount: hodDataStore.facultyWorkload.length,
-    alerts: hodDataStore.alerts
-  });
+  return getHODOverview(req, res);
 };
 
 const getFacultyRoster = async (req, res) => {
-  return res.json({ roster: hodDataStore.facultyWorkload });
+  return res.json({ faculty: hodDataStore.facultyWorkload });
 };
 
 const getAdvisorStudents = async (req, res) => {
-  const { advisorId } = req.params;
-  const advisor = hodDataStore.advisors.find(a => a.id === advisorId) || hodDataStore.advisors[0];
-  return res.json({ students: advisor.assignedStudents });
+  const advisor = hodDataStore.advisors.find(a => a.id === req.params.advisorId) || hodDataStore.advisors[0];
+  return res.json({ students: advisor ? advisor.assignedStudents : [] });
 };
 
 const getStudentData = async (req, res) => {
-  const { studentId } = req.params;
-  return res.json({
-    student: {
-      id: studentId,
-      name: 'Alice Wong',
-      email: 'alice.student@univ.edu',
-      semester: 4,
-      cgpa: 3.4,
-      attendance: 92
-    }
-  });
+  for (const adv of hodDataStore.advisors) {
+    const s = adv.assignedStudents.find(stu => stu.id === req.params.studentId);
+    if (s) return res.json({ student: s });
+  }
+  return res.json({ student: hodDataStore.advisors[0]?.assignedStudents[0] || null });
 };
 
 const submitFeedback = async (req, res) => {
-  return res.json({ success: true, message: 'Feedback submitted successfully' });
+  return res.json({ success: true, message: 'Feedback recorded successfully.' });
 };
 
 module.exports = {

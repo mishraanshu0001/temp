@@ -12,3 +12,29 @@
   min-height: 100vh;
   width: calc(100% - 250px);
 }
+
+@media print {
+  .sidebar,
+  aside,
+  button,
+  .print-hide,
+  .no-print {
+    display: none !important;
+  }
+
+  .dashboard-layout,
+  .dashboard-main,
+  .dashboard-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    min-height: auto !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+}
