@@ -18,17 +18,17 @@ import JobApplyPage from './pages/JobApplyPage';
 import DashboardLayout from './components/layout/DashboardLayout';
 import './index.css';
 
-function DashboardRouter() {
+function DashboardRouter({ initialTab }) {
   const { user } = useAuth();
   if (!user) return <Navigate to="/login" replace />;
   
   const role = (user.role || '').toLowerCase();
-  if (role === 'hod') return <HODDashboard />;
+  if (role === 'hod' || !role) return <HODDashboard initialTab={initialTab} />;
   if (role === 'advisor') return <AdvisorDashboard />;
   if (role === 'adjunct_faculty') return <AdjunctDashboard />;
   if (role === 'student') return <StudentDashboard />;
   if (role === 'admin') return <AdminDashboard />;
-  return <HODDashboard />;
+  return <HODDashboard initialTab={initialTab} />;
 }
 
 export default function App() {
@@ -44,10 +44,15 @@ export default function App() {
 
           {/* Authenticated Dashboard Pages */}
           <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<DashboardRouter />} />
+            <Route path="/dashboard" element={<DashboardRouter initialTab="kpis" />} />
+            <Route path="/dashboard/workload" element={<DashboardRouter initialTab="workload" />} />
+            <Route path="/dashboard/caseload" element={<DashboardRouter initialTab="advisors" />} />
+            <Route path="/dashboard/onboarding" element={<DashboardRouter initialTab="onboarding" />} />
+            <Route path="/dashboard/outcomes" element={<DashboardRouter initialTab="outcomes" />} />
+            <Route path="/dashboard/recruitment" element={<DashboardRouter initialTab="recruitment" />} />
+            
             <Route path="/dashboard/users" element={<UsersDirectory />} />
             <Route path="/dashboard/users/:id" element={<FacultyProfile />} />
-            <Route path="/dashboard/recruitment" element={<RecruitmentPage />} />
             <Route path="/dashboard/courses" element={<Courses />} />
             <Route path="/dashboard/messages" element={<Messages />} />
             <Route path="/dashboard/settings" element={<Settings />} />

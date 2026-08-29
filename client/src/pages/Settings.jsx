@@ -1,147 +1,213 @@
-'use client';
+import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { 
+  Shield, 
+  Bell, 
+  User, 
+  MonitorSmartphone, 
+  Key, 
+  CheckCircle2, 
+  Lock,
+  Globe,
+  Smartphone
+} from 'lucide-react';
 
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Shield, Bell, User, MonitorSmartphone, Key } from 'lucide-react';
+export default function Settings() {
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState('profile');
+  const [toast, setToast] = useState(null);
 
-export default function SettingsPage() {
-  const [activeTab, setActiveTab] = useState<'profile' | 'security' | 'notifications'>('profile');
+  const [formData, setFormData] = useState({
+    name: user?.name || 'Dr. Alan Smith',
+    email: user?.email || 'alan.smith@university.edu',
+    phone: '+1 (555) 019-2831',
+    language: 'en',
+    visibility: 'private'
+  });
+
+  const showToast = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  const handleSaveProfile = (e) => {
+    e.preventDefault();
+    showToast('Profile settings saved successfully.');
+  };
 
   return (
-    <div className="p-8 max-w-5xl mx-auto space-y-8">
-      
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Account Settings</h1>
-        <p className="text-slate-500 mt-1">Manage your profile, security preferences, and active devices.</p>
+    <div className="max-w-5xl mx-auto space-y-6 pb-12">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 p-3.5 rounded-lg shadow-md bg-slate-900 border border-slate-700 text-white flex items-center gap-2 animate-in slide-in-from-bottom-5 text-xs font-semibold">
+          <CheckCircle2 size={16} className="text-emerald-400" />
+          {toast}
+        </div>
+      )}
+
+      {/* Header Banner */}
+      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs">
+        <h1 className="text-xl font-bold text-slate-900">Account & Department Settings</h1>
+        <p className="text-xs text-slate-500 mt-1">Manage profile credentials, authentication, and notification preferences.</p>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-8">
-        
-        {/* Sidebar Nav */}
-        <div className="w-full md:w-64 shrink-0 space-y-2">
+      {/* Main Split Layout */}
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Left Sub-Navigation */}
+        <div className="w-full md:w-56 shrink-0 space-y-1">
           <button 
             onClick={() => setActiveTab('profile')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'profile' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-50'}`}
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-xs font-medium transition-all ${
+              activeTab === 'profile' ? 'bg-slate-900 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:bg-slate-100'
+            }`}
           >
-            <User size={18} /> Profile & Preferences
+            <User size={15} /> Profile & Details
           </button>
           <button 
             onClick={() => setActiveTab('security')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'security' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-50'}`}
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-xs font-medium transition-all ${
+              activeTab === 'security' ? 'bg-slate-900 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:bg-slate-100'
+            }`}
           >
-            <Shield size={18} /> Security & Devices
+            <Shield size={15} /> Security & 2FA
           </button>
           <button 
             onClick={() => setActiveTab('notifications')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${activeTab === 'notifications' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-600 hover:bg-slate-50'}`}
+            className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg text-xs font-medium transition-all ${
+              activeTab === 'notifications' ? 'bg-slate-900 text-white font-semibold shadow-2xs' : 'text-slate-600 hover:bg-slate-100'
+            }`}
           >
-            <Bell size={18} /> Notifications
+            <Bell size={15} /> Notification Alerts
           </button>
         </div>
 
-        {/* Content Area */}
-        <div className="flex-1 space-y-6">
-          
+        {/* Content Panel */}
+        <div className="flex-1">
           {/* PROFILE TAB */}
           {activeTab === 'profile' && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Profile Preferences</CardTitle>
-                <CardDescription>Update your personal information and visibility.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Phone Number</label>
-                    <input type="text" defaultValue="+1 (555) 019-2831" className="w-full p-2.5 border border-slate-300 rounded-lg text-sm" />
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-5">
+              <div>
+                <h3 className="font-bold text-sm text-slate-900">Personal Information</h3>
+                <p className="text-xs text-slate-400">Update your public institutional contact information.</p>
+              </div>
+
+              <form onSubmit={handleSaveProfile} className="space-y-4 text-xs">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-semibold text-slate-600 uppercase mb-1">Full Name</label>
+                    <input 
+                      type="text" 
+                      value={formData.name} 
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-slate-800 focus:bg-white" 
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Language</label>
-                    <select className="w-full p-2.5 border border-slate-300 rounded-lg text-sm">
+                  <div>
+                    <label className="block font-semibold text-slate-600 uppercase mb-1">Institutional Email</label>
+                    <input 
+                      type="email" 
+                      disabled
+                      value={formData.email} 
+                      className="w-full p-2.5 bg-slate-100 border border-slate-200 rounded-lg text-slate-500 font-mono" 
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-semibold text-slate-600 uppercase mb-1">Contact Phone</label>
+                    <input 
+                      type="text" 
+                      value={formData.phone} 
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-slate-800 focus:bg-white" 
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-semibold text-slate-600 uppercase mb-1">Interface Language</label>
+                    <select 
+                      value={formData.language}
+                      onChange={(e) => setFormData({ ...formData, language: e.target.value })}
+                      className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-slate-800"
+                    >
                       <option value="en">English (US)</option>
-                      <option value="hi">Hindi</option>
-                      <option value="ta">Tamil</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
                     </select>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700">Profile Visibility</label>
-                  <select className="w-full p-2.5 border border-slate-300 rounded-lg text-sm">
-                    <option value="private">Private (Only Advisors & Teachers)</option>
-                    <option value="public">Public (Visible to Peers)</option>
-                  </select>
+
+                <div className="pt-3 border-t border-slate-100 flex justify-end">
+                  <button type="submit" className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-medium rounded-lg transition-all">
+                    Save Changes
+                  </button>
                 </div>
-                <button className="px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium">Save Changes</button>
-              </CardContent>
-            </Card>
+              </form>
+            </div>
           )}
 
           {/* SECURITY TAB */}
           {activeTab === 'security' && (
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2"><Key size={18}/> Two-Factor Authentication</CardTitle>
-                  <CardDescription>Add an extra layer of security to your account.</CardDescription>
-                </CardHeader>
-                <CardContent className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">2FA is currently <strong className="text-rose-600">disabled</strong>.</span>
-                  <button className="px-4 py-2 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-lg text-sm font-medium">Enable 2FA</button>
-                </CardContent>
-              </Card>
+            <div className="space-y-4">
+              <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-between">
+                <div>
+                  <h4 className="font-bold text-xs text-slate-900 flex items-center gap-1.5">
+                    <Key size={14} className="text-slate-700" /> Two-Factor Authentication (2FA)
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5">Protect your faculty portal with Authenticator OTP.</p>
+                </div>
+                <button 
+                  onClick={() => showToast('2FA setup instructions sent to your email.')}
+                  className="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
+                >
+                  Enable 2FA
+                </button>
+              </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center gap-2"><MonitorSmartphone size={18}/> Active Devices</CardTitle>
-                  <CardDescription>Review the devices currently logged into your account.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="divide-y divide-slate-100">
-                    <div className="py-4 flex justify-between items-start">
-                      <div>
-                        <h4 className="text-sm font-semibold text-slate-900">MacBook Pro (Chrome)</h4>
-                        <p className="text-xs text-slate-500 mt-1">IP: 192.168.1.45 • Last active: Just now</p>
-                      </div>
-                      <span className="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded">Current Session</span>
+              <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs">
+                <h4 className="font-bold text-xs text-slate-900 flex items-center gap-1.5 mb-3">
+                  <MonitorSmartphone size={14} className="text-slate-700" /> Active Institutional Sessions
+                </h4>
+                <div className="divide-y divide-slate-100 text-xs">
+                  <div className="py-3 flex justify-between items-center">
+                    <div>
+                      <span className="font-semibold text-slate-900 block">Workstation Chrome (Current)</span>
+                      <span className="text-[10px] text-slate-400">IP: 192.168.1.45 • Active Now</span>
                     </div>
-                    <div className="py-4 flex justify-between items-start">
-                      <div>
-                        <h4 className="text-sm font-semibold text-slate-900">iPhone 14 Pro (Safari)</h4>
-                        <p className="text-xs text-slate-500 mt-1">IP: 104.28.10.12 • Last active: 2 hours ago</p>
-                      </div>
-                      <button className="text-xs font-medium text-rose-600 hover:underline">Revoke Access</button>
-                    </div>
+                    <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-[10px] font-semibold">Active</span>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           )}
 
           {/* NOTIFICATIONS TAB */}
           {activeTab === 'notifications' && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Notification Preferences</CardTitle>
-                <CardDescription>Control which alerts you receive via email and push.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-4">
+              <div>
+                <h3 className="font-bold text-sm text-slate-900">Notification Alerts</h3>
+                <p className="text-xs text-slate-400">Configure alerts for student queries and workload rebalancing.</p>
+              </div>
+
+              <div className="space-y-2 text-xs">
                 {[
-                  { id: 'notif_assignment', label: 'Assignment Deadlines' },
-                  { id: 'notif_exam', label: 'Exam Results Published' },
-                  { id: 'notif_attendance', label: 'Attendance Warnings (Tier 2)' },
-                  { id: 'notif_advisor', label: 'Advisor Messages' }
-                ].map(setting => (
-                  <div key={setting.id} className="flex items-center justify-between p-3 border border-slate-100 rounded-lg">
-                    <span className="text-sm font-medium text-slate-700">{setting.label}</span>
-                    <input type="checkbox" defaultChecked className="w-4 h-4 text-indigo-600 rounded" />
+                  { id: '1', title: 'Faculty Workload Capacity Warnings', desc: 'Notify when any faculty member exceeds 18 hrs/week.' },
+                  { id: '2', title: 'Advisor Caseload Risk Thresholds', desc: 'Alert when risk-weighted scores reach 120+ points.' },
+                  { id: '3', title: 'New Job Candidate Applications', desc: 'Instant email alert upon new ATS candidate submission.' },
+                  { id: '4', title: 'Unresolved Student Doubts (SLA > 24h)', desc: 'Daily summary of unanswered questions.' }
+                ].map((item) => (
+                  <div key={item.id} className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between">
+                    <div>
+                      <h5 className="font-semibold text-slate-800">{item.title}</h5>
+                      <p className="text-[10px] text-slate-400">{item.desc}</p>
+                    </div>
+                    <input type="checkbox" defaultChecked className="rounded text-slate-900" />
                   </div>
                 ))}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           )}
-
         </div>
-
       </div>
     </div>
   );

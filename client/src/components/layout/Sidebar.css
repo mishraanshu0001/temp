@@ -1,70 +1,183 @@
 .sidebar {
   width: 240px;
   min-height: 100vh;
-  background: #0f172a;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
-  padding: 24px 16px;
+  padding: 16px 12px;
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   z-index: 100;
 }
+
 .sidebar-logo {
-  font-size: 24px;
-  font-weight: 800;
-  color: white;
-  padding: 0 12px;
-  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 16px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 16px;
   cursor: pointer;
 }
-.sidebar-logo span { color: #a78bfa; }
-.sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+
+.logo-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.section-header {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+}
+
+.section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
 .nav-item {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #475569;
   text-align: left;
-  padding: 10px 12px;
+  padding: 8px 10px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.2s;
+  transition: all 0.1s ease;
 }
-.nav-item:hover { background: rgba(255,255,255,0.08); color: white; }
+
+.nav-item:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.nav-item.active {
+  background: #f1f5f9;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.nav-item .nav-icon {
+  color: #64748b;
+}
+
+.nav-item.active .nav-icon {
+  color: #0f172a;
+}
+
+.sidebar-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
 .sidebar-user {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  gap: 9px;
+  padding: 10px 8px;
+  border-top: 1px solid #f1f5f9;
   margin-top: auto;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #f1f5f9;
 }
+
 .user-avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #7c3aed;
-  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 14px;
   flex-shrink: 0;
 }
-.user-info { flex: 1; overflow: hidden; }
-.user-name { color: white; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.user-role { color: rgba(255,255,255,0.4); font-size: 11px; text-transform: capitalize; }
+
+.user-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.user-name {
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  color: #64748b;
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
 .logout-btn {
   background: none;
   border: none;
-  color: rgba(255,255,255,0.4);
-  font-size: 18px;
+  color: #94a3b8;
+  padding: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.1s ease;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.logout-btn:hover { color: #f87171; }
+
+.logout-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
